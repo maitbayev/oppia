@@ -14,15 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Rules for UnicodeString."""
-
-from extensions.rules import base
+from extensions.interactions import base
 
 
-class IsMathematicallyEquivalentTo(base.UnicodeStringRule):
-    description = (
-        'is mathematically equivalent to {{x|UnicodeString}}')
+class MathExpressionInput(base.BaseInteraction):
+    """Interaction for math expression input."""
 
-    def _evaluate(self, subject):
-        # The evaluation is done in the frontend.
-        raise NotImplementedError
+    name = 'Math Expression Input'
+    description = 'Allows learners to enter mathematical expressions.'
+    display_mode = base.DISPLAY_MODE_INLINE
+    is_trainable = False
+    _dependency_ids = ['guppy', 'math_expressions']
+    answer_type = 'UnicodeString'
+
+    _customization_arg_specs = []
